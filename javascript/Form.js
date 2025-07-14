@@ -11,7 +11,7 @@ Form = Class.create({
 
 		// submit on enter in text field
 		this._input.observe('keypress', function (e) {
-			if ((e.which && e.which == 13) || (e.keyCode && e.keyCode == 13)) this._submit();
+			if ((e.which && e.which === 13) || (e.keyCode && e.keyCode === 13)) this._submit();
 		}.bind(this));
 
 		// or when the submit button is pressed
@@ -38,9 +38,10 @@ Form = Class.create({
 		this._loadingIndicator.show();
 		try {
 			const value = this._input.value.strip();
-			console.log("Parsing value:", value);
-			const result = await window.nattyParser.parse(value);
-			if (await result.isEmpty()) {
+			const parser = await window.nattyParser;
+			console.log("Parsing value:", value, parser);
+			const result = await parser.parse(value);
+			if (result.isEmpty()) {
 				console.log("No result found");
 				this._empty.show();
 			} else {
