@@ -41,7 +41,7 @@ Form = Class.create({
 			const parser = await window.nattyParser;
 			console.log("Parsing value:", value, parser);
 			const result = await parser.parse(value);
-			if (result.isEmpty()) {
+			if (await result.isEmpty()) {
 				console.log("No result found");
 				this._empty.show();
 			} else {
