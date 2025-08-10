@@ -1,10 +1,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 		"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-  <head>
-    <meta http-equiv="content-type" content="text/html;charset=UTF-8"/>
-    <title>Natty Date Parser</title>
-    <link rel="stylesheet" type="text/css" href="index.css"/>
+	<head>
+		<meta http-equiv="content-type" content="text/html;charset=UTF-8"/>
+		<title>Natty Date Parser</title>
+		<link rel="stylesheet" type="text/css" href="index.css"/>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/prototype/1.7.3/prototype.min.js" integrity="sha512-C4LuwXQtQOF1iTRy3zwClYLsLgFLlG8nCV5dCxDjPcWsyFelQXzi3efHRjptsOzbHwwnXC3ZU+sWUh1gmxaTBA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   </head>
 
@@ -29,7 +29,7 @@
 </div>
 
 <div id="version">
-  v.1.0.2
+  v.1.1.0
 </div>
 
     <div id="content">
@@ -65,11 +65,11 @@
 <pre><code class="block">&lt;dependency&gt;
   &lt;groupId&gt;org.natty&lt;/groupId&gt;
   &lt;artifactId&gt;natty&lt;/artifactId&gt;
-  &lt;version&gt;1.0.2&lt;/version&gt;
+  &lt;version&gt;1.1.0&lt;/version&gt;
 &lt;/dependency&gt;
 </code></pre>
-        <p>
-          If you're not using Maven, you can download the latest jar file from
+					<p>
+					If you're not using Maven, you can download the latest jar file from
           <a href="https://github.com/natty-parser/natty">github</a>.
         </p>
 
@@ -81,21 +81,21 @@
             location of the matching text, granular parse and abstract syntax
             tree information, and simple recurrence information.
           </p>
-<pre><code class="block">import org.natty.*;
+<pre><![CDATA[import org.natty.*;
 
 Parser parser = new Parser();
-List<dategroup> groups = parser.parse("the day before next thursday");
+List<DateGroup> groups = parser.parse("the day before next thursday");
 for(DateGroup group:groups) {
-  List<date> dates = group.getDates();
+  List<Date> dates = group.getDates();
   int line = group.getLine();
   int column = group.getPosition();
   String matchingValue = group.getText();
   String syntaxTree = group.getSyntaxTree().toStringTree();
-  Map<string, list<parselocation>&gt; parseMap = group.getParseLocations();
+  Map<String, list<Parselocation>>; parseMap = group.getParseLocations();
   boolean isRecurreing = group.isRecurring();
   Date recursUntil = group.getRecursUntil();
-}
-</code></pre>
+}]]>
+</pre>
         </li>
       </ol>
       <p>
