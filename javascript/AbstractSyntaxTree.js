@@ -43,8 +43,8 @@ window.AbstractSyntaxTree = Class.create({
   },
 
   _tab : function() {
-    var spacingString = '';
-    for(var i=0; i<this._level; i++) {
+    let spacingString = '';
+    for(let i=0; i<this._level; i++) {
       spacingString += '----';
     }
 
