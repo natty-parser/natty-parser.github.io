@@ -26,7 +26,7 @@ Form = Class.create({
 	 *
 	 */
 	_submit: async function () {
-
+		const parser = await window.setup();
 		this._summary.hide();
 		this._date.hide();
 		this._error.hide();
@@ -38,7 +38,6 @@ Form = Class.create({
 		this._loadingIndicator.show();
 		try {
 			const value = this._input.value.strip();
-			const parser = await window.nattyParser;
 			console.log("Parsing value:", value, parser);
 			const result = await parser.parse(value);
 			if (await result.isEmpty()) {
