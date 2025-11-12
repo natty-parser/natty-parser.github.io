@@ -59,6 +59,8 @@ Form = Class.create({
 				const string = await firstDate.toString();
 				this._date.update(string);
 				this._structureDetails.update(syntaxTreeString);
+				const astTree = new window.AbstractSyntaxTree()
+				this._astDetails.update(astTree.build(syntaxTreeString));
 				this._summary.show();
 			}
 		} catch (e) {
