@@ -22,6 +22,31 @@ Form = Class.create({
 		// focus on the input by default
 		this._input.focus();
 		this._input.select();
+		const datalist = $('input-examples');
+		const options = datalist.querySelectorAll('option');
+
+		if (options.length > 0) {
+			const randomIndex = Math.floor(Math.random() * options.length);
+			if (this._input.value === "") {
+				this._input.value = options[randomIndex].value;
+			}
+		}
+		this._clear = $('clear');
+		const updateClearButtonVisibility = function() {
+			this._clear.style.display = this._input.value.trim() ? 'inline-block' : 'none';
+		}.bind(this);
+		this._input.addEventListener('input', updateClearButtonVisibility);
+		this._clear.addEventListener('click', function (e) {
+			e.preventDefault();
+			this._input.value = "";
+			this._input.focus();
+			updateClearButtonVisibility();
+		}.bind(this));
+		this._input.addEventListener('change', function(e) {
+			this._submit(e);
+		}.bind(this));
+
+
 	},
 
 	/**
