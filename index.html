@@ -2,7 +2,6 @@
 		"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
-		<meta http-equiv="content-type" content="text/html;charset=UTF-8"/>
 		<title>Natty Date Parser</title>
 		<link rel="stylesheet" type="text/css" href="index.css"/>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/prototype/1.7.3/prototype.min.js" integrity="sha512-C4LuwXQtQOF1iTRy3zwClYLsLgFLlG8nCV5dCxDjPcWsyFelQXzi3efHRjptsOzbHwwnXC3ZU+sWUh1gmxaTBA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -81,20 +80,20 @@
             location of the matching text, granular parse and abstract syntax
             tree information, and simple recurrence information.
           </p>
-<pre><![CDATA[import org.natty.*;
+<pre>import org.natty.*;
 
 Parser parser = new Parser();
-List<DateGroup> groups = parser.parse("the day before next thursday");
+List&lt;DateGroup&gt; groups = parser.parse("the day before next thursday");
 for(DateGroup group:groups) {
-  List<Date> dates = group.getDates();
+  List&lt;Date&gt; dates = group.getDates();
   int line = group.getLine();
   int column = group.getPosition();
   String matchingValue = group.getText();
   String syntaxTree = group.getSyntaxTree().toStringTree();
-  Map<String, list<Parselocation>>; parseMap = group.getParseLocations();
-  boolean isRecurreing = group.isRecurring();
+  Map&lt;String, List&lt;ParseLocation&gt;&gt; parseMap = group.getParseLocations();
+  boolean isRecurring = group.isRecurring();
   Date recursUntil = group.getRecursUntil();
-}]]>
+}
 </pre>
         </li>
       </ol>
