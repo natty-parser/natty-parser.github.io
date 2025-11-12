@@ -16,7 +16,7 @@ window.setup = async function setup() {
 		})
 
 		const prefix = "/app/";
-    const classpath = `${prefix}natty-1.1.1-SNAPSHOT.jar:${prefix}antlr-runtime-3.5.3.jar:${prefix}slf4j-api-2.0.17.jar:${prefix}slf4j-nop-2.0.17.jar`;
+    const classpath = `${prefix}natty-1.1.1.jar:${prefix}antlr-runtime-3.5.3.jar:${prefix}slf4j-api-2.0.17.jar:${prefix}slf4j-nop-2.0.17.jar`;
 		console.log("Classpath:", classpath);
 		const cj = await cheerpjRunLibrary(classpath);
 
