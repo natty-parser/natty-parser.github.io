@@ -1,6 +1,33 @@
 window.ParseTree = Class.create({
 	initialize : function() {},
 
+	locationToJson: async function(parseLocation) {
+		const result = {};
+		result.start = await parseLocation.getStart();
+		result.end = await parseLocation.getEnd();
+		return result;
+	},
+	groupToJson: async function(parseGroup) {
+		const result = {};
+		const parseLocations = await parseGroup.getParseLocations();
+		const entries = await (await parseLocations.entrySet()).iterator();
+		while(await entries.hasNext()) {
+			const entry = await entries.next();
+			const element = []
+			result[await entry.getKey()] = element;
+			const list = await (await entry.getValue()).iterator();
+			while (await list.hasNext()) {
+				const parseLocation = await list.next();
+				const item = {};
+				element.push(item)
+				item.start = await parseLocation.getStart();
+				item.end = await parseLocation.getEnd();
+			}
+		}
+		return result;
+	},
+
+
 	build : function(inputString, json) {
 		const root = new Element('div');
 		const indices = [];

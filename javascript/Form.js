@@ -58,7 +58,10 @@ Form = Class.create({
 				const firstDate = await dates.get(0);
 				const string = await firstDate.toString();
 				this._date.update(string);
-				this._structureDetails.update(syntaxTreeString);
+				const parseTree = new window.ParseTree();
+				const json = await parseTree.groupToJson(firstGroup);
+				console.log(json);
+				this._structureDetails.update(parseTree.build(value, json));
 				const astTree = new window.AbstractSyntaxTree()
 				this._astDetails.update(astTree.build(syntaxTreeString));
 				this._summary.show();
