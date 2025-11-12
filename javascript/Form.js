@@ -2,6 +2,8 @@ Form = Class.create({
 	initialize: function () {
 		this._input = $('text_input');
 		this._loadingIndicator = $('loading');
+		this._submitButton = $('submit');
+
 		this._date = $('date');
 		this._summary = $('summary');
 		this._error = $('error');
@@ -15,7 +17,7 @@ Form = Class.create({
 		}.bind(this));
 
 		// or when the submit button is pressed
-		$('submit').observe('click', this._submit.bind(this));
+		this._submitButton.observe('click', this._submit.bind(this));
 
 		// focus on the input by default
 		this._input.focus();
@@ -25,7 +27,10 @@ Form = Class.create({
 	/**
 	 *
 	 */
-	_submit: async function () {
+	_submit: async function (e) {
+		if (e) e.preventDefault();
+		this._loadingIndicator.show();
+		this._submitButton.disabled = true;
 		const parser = await window.setup();
 		this._summary.hide();
 		this._date.hide();
@@ -33,9 +38,11 @@ Form = Class.create({
 		this._empty.hide();
 		if (this._input.value.strip().length === 0) {
 			this._empty.show();
+			this._loadingIndicator.hide();
+			this._submitButton.disabled = false;
 			return;
 		}
-		this._loadingIndicator.show();
+
 		try {
 			const value = this._input.value.strip();
 			console.log("Parsing value:", value, parser);
@@ -61,6 +68,8 @@ Form = Class.create({
 		}
 		this._date.show();
 		this._loadingIndicator.hide();
+		this._submitButton.disabled = false;
+
 	}
 }
 );

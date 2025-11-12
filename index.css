@@ -124,6 +124,7 @@ code.block {
   height:30px;
   width:64px;
   outline:none;
+	border: none;
 }
 
 #submit:hover {
