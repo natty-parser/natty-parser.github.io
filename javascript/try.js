@@ -3,7 +3,11 @@ const properties=  [
 	`user.timezone=${Intl.DateTimeFormat().resolvedOptions().timeZone}`
 ]
 console.log("Properties:", properties);
+let setupPromise = null;
+
 window.setup = async function setup() {
+	if (setupPromise === null) {
+    setupPromise = (async () => {
 	if (window.nattyParser === undefined) {
 		await cheerpjInit({
 			enableDebug: false,
@@ -23,4 +27,8 @@ window.setup = async function setup() {
 		console.log("Parser loaded", window.nattyParser);
 	}
 	return window.nattyParser;
+	 })();
+  }
+  return setupPromise;
 }
+window.setup();
