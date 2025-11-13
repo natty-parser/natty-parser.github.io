@@ -28,15 +28,7 @@ Form = Class.create({
 		// Read from query string on load
 		const urlParams = new URLSearchParams(window.location.search);
 
-		const queryValue = urlParams.get('q');
-		if (queryValue) {
-			this._input.value = queryValue;
-		} else if (options.length > 0) {
-			const randomIndex = Math.floor(Math.random() * options.length);
-			if (this._input.value === "") {
-				this._input.value = options[randomIndex].value;
-			}
-		}
+
 		this._clear = $('clear');
 		const updateClearButtonVisibility = function() {
 			this._clear.style.display = this._input.value.trim() ? 'inline-block' : 'none';
@@ -51,10 +43,19 @@ Form = Class.create({
 			url.searchParams.delete('q');
 			window.history.pushState({}, '', url);
 		}.bind(this));
-			this._input.addEventListener('change', function(e) {
+		this._input.addEventListener('change', function(e) {
 			this._submit(e);
 		}.bind(this));
 
+		const queryValue = urlParams.get('q');
+		if (queryValue) {
+			this._input.value = queryValue;
+			this._submit();
+
+		} else if (this._input.value === 0) {
+			const randomIndex = Math.floor(Math.random() * options.length);
+			this._input.value = options[randomIndex].value;
+		}
 
 	},
 
