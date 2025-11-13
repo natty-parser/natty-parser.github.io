@@ -33,14 +33,16 @@ code.block {
   border:1px solid #aaa;
 }
 
-#version {
+.left_labels {
   position:fixed;
-  top:200px;
+  top:180px;
   left:0;
   width:160px;
   padding-right:20px;
   text-align:right;
-  color:#ccc;
+  color:#aaa;
+
+
 }
 
 #nav {

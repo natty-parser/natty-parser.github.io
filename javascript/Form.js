@@ -10,11 +10,7 @@ Form = Class.create({
 		this._empty = $('empty');
 		this._structureDetails = $('structure_details');
 		this._astDetails = $('ast_details');
-
-		// submit on enter in text field
-		this._input.observe('keypress', function (e) {
-			if ((e.which && e.which === 13) || (e.keyCode && e.keyCode === 13)) this._submit();
-		}.bind(this));
+		this._clear = $('clear');
 
 		// or when the submit button is pressed
 		this._submitButton.observe('click', this._submit.bind(this));
@@ -22,41 +18,41 @@ Form = Class.create({
 		// focus on the input by default
 		this._input.focus();
 		this._input.select();
-		const datalist = $('input-examples');
-		const options = datalist.querySelectorAll('option');
+		this._input.addEventListener('input', this._updateClearButtonVisibility.bind(this));
 
-		// Read from query string on load
-		const urlParams = new URLSearchParams(window.location.search);
+		// This sadly only seem to work in chrome
+		this._input.addEventListener('change', this._submit.bind(this));
 
-
-		this._clear = $('clear');
-		const updateClearButtonVisibility = function() {
-			this._clear.style.display = this._input.value.trim() ? 'inline-block' : 'none';
-		}.bind(this);
-		this._input.addEventListener('input', updateClearButtonVisibility);
 		this._clear.addEventListener('click', function (e) {
 			e.preventDefault();
 			this._input.value = "";
 			this._input.focus();
-			updateClearButtonVisibility();
+			this._updateClearButtonVisibility();
+			this._date.hide();
+			this._error.hide();
+			this._empty.hide();
+			this._summary.hide();
+
 			const url = new URL(window.location);
 			url.searchParams.delete('q');
 			window.history.pushState({}, '', url);
 		}.bind(this));
-		this._input.addEventListener('change', function(e) {
-			this._submit(e);
-		}.bind(this));
 
-		const queryValue = urlParams.get('q');
+		// Read from query string on load
+		const queryValue = new URLSearchParams(window.location.search).get('q');
 		if (queryValue) {
 			this._input.value = queryValue;
 			this._submit();
-
 		} else if (this._input.value === 0) {
+			const datalist = $('input-examples');
+		  const options = datalist.querySelectorAll('option');
 			const randomIndex = Math.floor(Math.random() * options.length);
 			this._input.value = options[randomIndex].value;
 		}
+	},
 
+	_updateClearButtonVisibility: async function () {
+		this._clear.style.display = this._input.value.trim() ? 'inline-block' : 'none';
 	},
 
 	/**
@@ -64,8 +60,9 @@ Form = Class.create({
 	 */
 	_submit: async function (e) {
 		if (e) e.preventDefault();
-		this._loadingIndicator.show();
 		this._submitButton.disabled = true;
+		this._loadingIndicator.show();
+
 		const parser = await window.setup();
 		this._summary.hide();
 		this._date.hide();
@@ -114,7 +111,6 @@ Form = Class.create({
 		this._date.show();
 		this._loadingIndicator.hide();
 		this._submitButton.disabled = false;
-
 	}
 }
 );
