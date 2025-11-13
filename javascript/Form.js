@@ -43,7 +43,7 @@ Form = Class.create({
 		if (queryValue) {
 			this._input.value = queryValue;
 			this._submit();
-		} else if (this._input.value === 0) {
+		} else if (! this._input.value) {
 			const datalist = $('input-examples');
 		  const options = datalist.querySelectorAll('option');
 			const randomIndex = Math.floor(Math.random() * options.length);
