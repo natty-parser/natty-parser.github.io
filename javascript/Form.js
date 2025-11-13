@@ -25,7 +25,13 @@ Form = Class.create({
 		const datalist = $('input-examples');
 		const options = datalist.querySelectorAll('option');
 
-		if (options.length > 0) {
+		// Read from query string on load
+		const urlParams = new URLSearchParams(window.location.search);
+
+		const queryValue = urlParams.get('q');
+		if (queryValue) {
+			this._input.value = queryValue;
+		} else if (options.length > 0) {
 			const randomIndex = Math.floor(Math.random() * options.length);
 			if (this._input.value === "") {
 				this._input.value = options[randomIndex].value;
@@ -41,8 +47,11 @@ Form = Class.create({
 			this._input.value = "";
 			this._input.focus();
 			updateClearButtonVisibility();
+			const url = new URL(window.location);
+			url.searchParams.delete('q');
+			window.history.pushState({}, '', url);
 		}.bind(this));
-		this._input.addEventListener('change', function(e) {
+			this._input.addEventListener('change', function(e) {
 			this._submit(e);
 		}.bind(this));
 
@@ -71,6 +80,11 @@ Form = Class.create({
 		try {
 			const value = this._input.value.strip();
 			console.log("Parsing value:", value, parser);
+			if (value.length > 0) {
+				const url = new URL(window.location);
+				url.searchParams.set('q', value);
+				window.history.pushState({}, '', url);
+			}
 			const result = await parser.parse(value);
 			if (await result.isEmpty()) {
 				console.log("No result found");
