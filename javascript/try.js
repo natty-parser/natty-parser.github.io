@@ -11,15 +11,13 @@ window.setup = async function setup() {
 	if (window.nattyParser === undefined) {
 		function showPreloadProgress(preloadDone, preloadTotal) {
 			const percentage = Math.round((preloadDone * 100) / preloadTotal);
-			//console.log("Percentage loaded " + (preloadDone * 100) / preloadTotal);
-			// Update all loading buttons
 			console.log(percentage + "%");
 		}
 		await cheerpjInit({
 			enableDebug: false,
 			version: 17,
 			javaProperties: properties,
-			preloadResources: JSON.parse('{"/lt/17/lib/modules":[0,131072,1179648,2097152,2228224,3801088,3932160,4063232,4194304,4587520,4849664,5242880,5636096,5898240,6029312,6291456,6815744,7077888,7864320,7995392,9568256,9699328,9830400,10092544,37486592,37617664,38010880,38141952],"/lt/etc/users":[0,131072],"/lt/etc/localtime":[],"/lt/17/jre/lib/cheerpj-handlers.jar":[0,131072],"/lt/17/jre/lib/cheerpj-awt.jar":[0,131072],"/lt/17/jre/lib/cheerpj-jsobject.jar":[0,131072],"/lt/17/conf/security/java.security":[0,131072],"/lt/17/conf/logging.properties":[0,131072],"/lt/17/lib/tzdb.dat":[0,131072]}'),
+			preloadResources: {"/lt/17/lib/tzdb.dat":[0,131072],"/lt/17/lib/modules":[0,131072,1179648,3801088,3932160,4063232,4194304,5242880,5636096,5898240,6029312,6291456,6815744,7077888,7864320,7995392,9568256,9699328,9830400,10223616,19005440,19136512,19660800,19791872,37486592,37617664,38010880,38141952],"/lt/17/conf/logging.properties":[0,131072],"/lt/17/conf/security/java.security":[0,131072],"/lt/17/jre/lib/cheerpj-jsobject.jar":[0,131072],"/lt/17/jre/lib/cheerpj-awt.jar":[0,131072],"/lt/17/jre/lib/cheerpj-handlers.jar":[0,131072],"/lt/etc/users":[0,131072],"/lt/etc/localtime":[]},
 			preloadProgress: showPreloadProgress
 		})
 
