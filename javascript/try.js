@@ -21,8 +21,8 @@ window.setup = async function setup() {
 			preloadProgress: showPreloadProgress
 		})
 
-		const prefix = "/app/";
-    const classpath = `${prefix}natty-1.1.2-SNAPSHOT.jar:${prefix}antlr-runtime-3.5.3.jar`;
+		const prefix = "/app/lib/";
+    const classpath = `${prefix}natty-1.1.2.jar:${prefix}antlr-runtime-3.5.3.jar`;
 		console.log("Classpath:", classpath);
 		const cj = await cheerpjRunLibrary(classpath);
 
