@@ -92,8 +92,14 @@ Form = Class.create({
 				const syntaxTree = await firstGroup.getSyntaxTree();
 				const syntaxTreeString = await syntaxTree.toStringTree();
 				const dates = await firstGroup.getDates();
-				const firstDate = await dates.get(0);
-				const string = await firstDate.toString();
+				let string = "";
+				for (let i = 0; i < await dates.size(); i++) {
+					const date = await dates.get(i);
+					if (string.length > 0) {
+						string += " -  "
+					}
+					string += await date.toString();
+				}
 				this._date.update(string);
 				const parseTree = new window.ParseTree();
 				const json = await parseTree.groupToJson(firstGroup);
