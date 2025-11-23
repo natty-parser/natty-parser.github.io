@@ -85,14 +85,15 @@ code.block {
 }
 
 #content {
-	position:absolute;
+	position: relative;
   padding:20px 40px 40px 40px;
   margin:0 0 0 180px;
+	max-width: 1500px;
   top:0;
 }
 
 #text_input {
-  width:620px;
+  width:80%;
   font-size:18px;
   margin-bottom:20px;
 }
@@ -193,13 +194,6 @@ button {
   font-weight:bold;
 }
 
-/**** searcher ****/
-
-textarea#search_input {
-  width:660px;
-  height:160px;
-  margin-bottom:20px;
-}
 
 #results {
   clear:both;
@@ -220,3 +214,42 @@ textarea#search_input {
 #result_list li {
   margin-bottom:10px;
 }
+
+@media (max-width: 800px) {
+  .left_labels {
+		display: none;
+	}
+
+  #nav {
+		position: relative;
+		float: none;
+		left: unset;
+		bottom: unset;
+		width: 100vw;
+		height: 3ex;
+		padding: 10px 12px;
+	}
+	#nav ul {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		display: flex;
+		flex-wrap: nowrap;
+		gap: 4px;
+	}
+	#nav li {
+		display: inline-block;
+	}
+	#content {
+		position: relative;
+		margin: 0 0 0 0 !important;
+	}
+	img#ast_diagram {
+		width: 90vw;
+		max-width: 800px;
+		margin: 0 0 0 0 !important;
+	}
+
+
+}
+
