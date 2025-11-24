@@ -3,7 +3,6 @@
 	<head>
 		<title>Natty Date Parser</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1"/>
-
 		<link rel="stylesheet" type="text/css" href="index.css"/>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/prototype/1.7.3/prototype.min.js" integrity="sha512-C4LuwXQtQOF1iTRy3zwClYLsLgFLlG8nCV5dCxDjPcWsyFelQXzi3efHRjptsOzbHwwnXC3ZU+sWUh1gmxaTBA==" crossorigin="anonymous" referrerpolicy="no-referrer" type="text/javascript"></script>
 		<!-- Google tag (gtag.js) -->
@@ -12,85 +11,81 @@
 			window.dataLayer = window.dataLayer || [];
 			function gtag(){dataLayer.push(arguments);}
 			gtag('js', new Date());
-
 			gtag('config', 'G-QEMVC2XSD8');
 		</script>
-  </head>
+	</head>
 
-  <body>
+	<body>
+		<div id="nav">
+			<ul>
+				<li class="first current">
+					<a href=".">about</a>
+				</li>
 
+				<li class="">
+					<a href="try.html">try it out</a>
+				</li>
 
+				<li class="">
+					<a href="doc.html">documentation</a>
+				</li>
+			</ul>
+		</div>
 
-<div id="nav">
-  <ul>
-    <li class="first current">
-      <a href=".">about</a>
-    </li>
+		<div class="left_labels" id="version">
+			<a href="https://central.sonatype.com/artifact/io.github.natty-parser/natty" rel="nofollow"><img src="https://camo.githubusercontent.com/864325ab7f75485931109e1a2905b6813e5a709e21189c8647ee486f726a3ce5/68747470733a2f2f696d672e736869656c64732e696f2f6d6176656e2d63656e7472616c2f762f696f2e6769746875622e6e617474792d7061727365722f6e617474792e7376673f6c6162656c3d4d6176656e25323043656e7472616c" alt="maven central" data-canonical-src="https://img.shields.io/maven-central/v/io.github.natty-parser/natty.svg?label=Maven%20Central" style="max-width: 100%;"></a>
+		</div>
 
-    <li class="">
-      <a href="try.html">try it out</a>
-    </li>
+		<div id="content">
+			<h1>natty</h1>
+			<p>
+				Natty is a natural language date parser written in Java.  Given a date
+				expression, natty will apply standard language recognition and translation
+				techniques to produce a list of corresponding dates with optional parse
+				and syntax information.  <a href="try.html">Give it a try</a>.
+			</p>
+			<p>
+				Natty recognizes dates described in many ways, including formal dates
+				(02/28/1979), relaxed dates (oct 1st), relative dates (the day before
+				next thursday), and even date alternatives (next wed or thurs).
+			</p>
+			<p>
+				Natty is also able to search for date components within a larger block
+				of text, detect their structure, and report line and column information.
+			</p>
+			<p>
+				Take a look at the <a href="doc.html">documentation</a> for a complete
+				description, and <a href="http://github.com/natty-parser/natty/issues">let
+				us know</a> if natty doesn't recognize something it should.
+			</p>
 
-    <li class="">
-      <a href="doc.html">documentation</a>
-    </li>
-  </ul>
-</div>
+			<p>
+				Getting started with natty is easy:
+			</p>
 
-<div class="left_labels" id="version">
-	<a href="https://central.sonatype.com/artifact/io.github.natty-parser/natty" rel="nofollow"><img src="https://camo.githubusercontent.com/864325ab7f75485931109e1a2905b6813e5a709e21189c8647ee486f726a3ce5/68747470733a2f2f696d672e736869656c64732e696f2f6d6176656e2d63656e7472616c2f762f696f2e6769746875622e6e617474792d7061727365722f6e617474792e7376673f6c6162656c3d4d6176656e25323043656e7472616c" alt="maven central" data-canonical-src="https://img.shields.io/maven-central/v/io.github.natty-parser/natty.svg?label=Maven%20Central" style="max-width: 100%;"></a>
-</div>
-
-    <div id="content">
-      <h1>natty</h1>
-      <p>
-        Natty is a natural language date parser written in Java.  Given a date
-        expression, natty will apply standard language recognition and translation
-        techniques to produce a list of corresponding dates with optional parse
-        and syntax information.  <a href="try.html">Give it a try</a>.
-      </p>
-      <p>
-        Natty recognizes dates described in many ways, including formal dates
-        (02/28/1979), relaxed dates (oct 1st), relative dates (the day before
-        next thursday), and even date alternatives (next wed or thurs).
-      </p>
-      <p>
-        Natty is also able to search for date components within a larger block
-        of text, detect their structure, and report line and column information.
-      </p>
-      <p>
-        Take a look at the <a href="doc.html">documentation</a> for a complete
-        description, and <a href="http://github.com/natty-parser/natty/issues">let
-        us know</a> if natty doesn't recognize something it should.
-      </p>
-
-      <p>
-        Getting started with natty is easy:
-      </p>
-
-      <ol>
-        <li>
-        Include the following dependency in your pom.xml file:
-<pre><code class="block">&lt;dependency&gt;
+			<ol>
+				<li>
+					Include the following dependency in your pom.xml file:
+					<pre><code class="block">
+&lt;dependency&gt;
   &lt;groupId&gt;org.natty&lt;/groupId&gt;
   &lt;artifactId&gt;natty&lt;/artifactId&gt;
-  &lt;version&gt;1.1.1&lt;/version&gt;
+  &lt;version&gt;1.1.2&lt;/version&gt;
 &lt;/dependency&gt;
-</code></pre>
-					<p>
-					If you're not using Maven, you can download the latest jar file from
-          <a href="https://github.com/natty-parser/natty">github</a>.
-        </p>
+				</code></pre>
+						<p>
+						If you're not using Maven, you can find other sniplets or download the jar manually via:
+						<a href="https://central.sonatype.com/artifact/io.github.natty-parser/natty">maven central</a>.
+					</p>
 
         <li>
-          <p>
-            Use the <code>Parser</code> class to parse your input string into
-            a list of <code>DateGroup</code>'s.  Each <code>DateGroup</code>
-            contains a list of <code>Date</code>'s, the original value and
-            location of the matching text, granular parse and abstract syntax
-            tree information, and simple recurrence information.
-          </p>
-<pre>import org.natty.*;
+					<p>
+						Use the <code>Parser</code> class to parse your input string into
+						a list of <code>DateGroup</code>'s.  Each <code>DateGroup</code>
+						contains a list of <code>Date</code>'s, the original value and
+						location of the matching text, granular parse and abstract syntax
+						tree information, and simple recurrence information.
+					</p><pre>import org.natty.*;
 
 Parser parser = new Parser();
 List&lt;DateGroup&gt; groups = parser.parse("the day before next thursday");
@@ -105,14 +100,14 @@ for(DateGroup group:groups) {
   Date recursUntil = group.getRecursUntil();
 }
 </pre>
-        </li>
-      </ol>
-      <p>
-        Keep in mind that natty was still quite young, and its API may change as
-        it reaches maturity.  If you'd like to leave some feedback, you can
-        submit an issue on <a href="http://github.com/natty-parser/natty/issues">
-        github</a>.
-      </p>
-    </div>
-  </body>
+			</li>
+			</ol>
+			<p>
+				Keep in mind that natty was still quite young, and its API may change as
+				it reaches maturity.  If you'd like to leave some feedback, you can
+				submit an issue on <a href="http://github.com/natty-parser/natty/issues">
+				github</a>.
+			</p>
+		</div>
+	</body>
 </html>

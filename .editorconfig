@@ -16,7 +16,7 @@ ij_formatter_tags_enabled = false
 ij_smart_tabs = false
 ij_wrap_on_typing = false
 
-[*.js]
+[{*.js, *.html}]
 indent_size = 2
 indent_style = tab
 
