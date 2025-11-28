@@ -224,7 +224,7 @@ pre {
 
 @media (max-width: 800px) {
 	body {
-		background-color: #aaa;
+		background-color: #f4f9fd;
 		min-height: 100vh;
 		height: 100%;
 		display: flex;
@@ -248,39 +248,37 @@ pre {
 
 	#nav ul {
 		position: relative;
-		margin-top: 10px;
+		margin-top: 3px;
 		padding: 0;
 		list-style: none;
 		display: flex;
 		flex-wrap: nowrap;
-		gap: 4px;
-		border-bottom: 1px solid #ccc !important;
+		gap: 3px;
+		border-bottom: 1px solid #888 !important;
 	}
 
 	#nav ul li.first {
-		border-top: none;
+		border-top: 1px solid #ccc;
 		margin-left: 10px !important;
 	}
 
 	#nav ul li {
 		position: relative;
-		border-radius: 3px 3px 0 0;
 		display: inline-block;
-		border-bottom: solid #ccc;
+		border: 1px solid #ccc;
+		border-bottom: 1px solid #888;
 		margin-bottom: -1px;
 		overflow-x: hidden;
 	}
 
 	#nav ul li a {
-		background-color: #f4f9fd;
+		padding: 10px 10px 10px 10px;
 		white-space: nowrap;
 		overflow-x: hidden;
-		border-bottom-color: red;
 	}
 
 	#nav ul li.current {
 		border-bottom-color: white;
-
 	}
 
 	#content {
@@ -295,7 +293,5 @@ pre {
 		max-width: 800px;
 		margin: 0 0 0 0 !important;
 	}
-
-
 }
 
