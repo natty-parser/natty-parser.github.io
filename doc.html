@@ -3,15 +3,13 @@
 	<head>
 		<meta http-equiv="content-type" content="text/html;charset=UTF-8"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1"/>
-		<title>Natty Date Parser</title>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/prototype/1.7.3/prototype.min.js" integrity="sha512-C4LuwXQtQOF1iTRy3zwClYLsLgFLlG8nCV5dCxDjPcWsyFelQXzi3efHRjptsOzbHwwnXC3ZU+sWUh1gmxaTBA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+		<title>Natty Date Parser - documentation</title>
 		<link rel="stylesheet" type="text/css" href="index.css"/>
 		<style>
 			#syntax_list dt {
 				margin:20px 0 10px 20px;
 				color:#aaa;
 			}
-
 			#syntax_list dd {
 				margin-left:20px;
 			}
@@ -26,7 +24,6 @@
 				margin:40px 0 20px 40px;
       }
 		</style>
-		<!-- Google tag (gtag.js) -->
 		<script async src="https://www.googletagmanager.com/gtag/js?id=G-QEMVC2XSD8"></script>
 		<script>
 			window.dataLayer = window.dataLayer || [];
@@ -34,12 +31,9 @@
 			gtag('js', new Date());
 			gtag('config', 'G-QEMVC2XSD8');
 		</script>
-
 	</head>
 
 	<body>
-
-
 		<div id="nav">
 			<ul>
 				<li class="first"><a href=".">about</a></li>
@@ -47,14 +41,20 @@
 				<li class="current"><a href="doc.html">documentation</a></li>
 			</ul>
 		</div>
-		<div class ="left_labels" id="version">
-			<a href="https://central.sonatype.com/artifact/io.github.natty-parser/natty" rel="nofollow"><img src="https://camo.githubusercontent.com/864325ab7f75485931109e1a2905b6813e5a709e21189c8647ee486f726a3ce5/68747470733a2f2f696d672e736869656c64732e696f2f6d6176656e2d63656e7472616c2f762f696f2e6769746875622e6e617474792d7061727365722f6e617474792e7376673f6c6162656c3d4d6176656e25323043656e7472616c" alt="maven central" data-canonical-src="https://img.shields.io/maven-central/v/io.github.natty-parser/natty.svg?label=Maven%20Central" style="max-width: 100%;"></a>
+		<div id="left_labels">
+			<a href="https://central.sonatype.com/artifact/io.github.natty-parser/natty" rel="nofollow">
+				<img src="https://img.shields.io/maven-central/v/io.github.natty-parser/natty.svg?label=Maven%20Central"
+						 alt="maven central"  style="max-width: 100%;" />
+				</a>
+			<a href="https://javadoc.io/doc/io.github.natty-parser/natty" rel="nofollow">
+				<img src="https://javadoc.io/badge2/io.github.natty-parser/natty/javadoc.svg" alt="javadoc"  style="max-width: 100%;" />
+			</a>
 		</div>
     <div id="content">
 			<h1>some words of wisdom</h1>
 
       <h2>how it works</h2>
-			<p>Natty makes heavy use of <a href="https://www.antlr3.org/">ANTLR</a> to tokenize and parse its input into a generic abstract syntax tree, and then walk that tree to determine the date(s) represented.  Natty attempts to recognize a wide range of date formats, but since there is an inherent ambuigity in the grammar describing these formats, some decisions need to be made arbitrarily.  For example, given the string: '10/10 500', we could interpret this as "october 10th at 5 o'clock" or as "october 10th in the year 500".  Given this choice, natty will choose the former with the reasoning that people don't typically reference dates that are centuries away from the present.
+			<p>Natty makes heavy use of <a href="https://www.antlr3.org/">ANTLR</a> to tokenize and parse its input into a generic abstract syntax tree, and then walk that tree to determine the date(s) represented.  Natty attempts to recognize a wide range of date formats, but since there is an inherent ambiguity in the grammar describing these formats, some decisions need to be made arbitrarily.  For example, given the string: '10/10 500', we could interpret this as "october 10th at 5 o'clock" or as "october 10th in the year 500".  Given this choice, natty will choose the former with the reasoning that people don't typically reference dates that are centuries away from the present.
 			</p>
 			<p>
 				The abstract syntax tree (AST) approach allows us to minimize the actual code we need to write (as opposed to the code generated for us by ANTLR,) to just a few date manipulation methods (see <a href="https://github.com/natty-parser/natty/blob/main/src/main/java/org/natty/WalkerState.java">WalkerState.java</a>). Another advantage to this approach is the theoretical ease at which natty could be ported to another target language.  For the more curious, here's a rough sketch of the AST structure used:

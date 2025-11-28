@@ -33,7 +33,7 @@ code.block {
 	border: 1px solid #aaa;
 }
 
-.left_labels {
+#left_labels {
 	position: fixed;
 	top: 180px;
 	left: 0;
@@ -231,7 +231,7 @@ pre {
 		flex-direction: column;
 	}
 
-	.left_labels {
+	#left_labels {
 		display: none;
 	}
 
