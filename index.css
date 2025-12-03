@@ -31,6 +31,7 @@ code.block {
 	margin: 10px 0 0 0;
 	padding: 10px;
 	border: 1px solid #aaa;
+	overflow-x: auto;
 }
 
 #left_labels {
@@ -88,7 +89,7 @@ code.block {
 	position: relative;
 	padding: 20px 40px 40px 40px;
 	margin: 0 0 0 180px;
-	max-width: 1500px;
+	max-width: 800px;
 	top: 0;
 }
 
@@ -219,7 +220,6 @@ button {
 
 pre {
 	margin-block: 0;
-	overflow-x: scroll;
 }
 
 @media (max-width: 800px) {

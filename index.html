@@ -76,15 +76,15 @@
 							If you're not using Maven, you can find other snippets or download the jar manually via:
 						<a href="https://central.sonatype.com/artifact/io.github.natty-parser/natty">maven central</a>.
 					</p>
+				</li>
         <li>
-					<p>
+          <p>
 						Use the <code>Parser</code> class to parse your input string into
 						a list of <code>DateGroup</code>'s.  Each <code>DateGroup</code>
 						contains a list of <code>Date</code>'s, the original value and
 						location of the matching text, granular parse and abstract syntax
 						tree information, and simple recurrence information.
-					</p><pre>import org.natty.*;
-
+					</p><pre><code class="block">import org.natty.*;
 Parser parser = new Parser();
 List&lt;DateGroup&gt; groups = parser.parse("the day before next thursday");
 for(DateGroup group:groups) {
@@ -97,14 +97,14 @@ for(DateGroup group:groups) {
   boolean isRecurring = group.isRecurring();
   Date recursUntil = group.getRecursUntil();
 }
-</pre>
-			</li>
+				</code></pre>
+        </li>
 			</ol>
 			<p>
-				Keep in mind that natty was still quite young, and its API may change as
-				it reaches maturity.  If you'd like to leave some feedback, you can
+				Keep in mind that natty could probably be improved on.  If you'd like to leave some feedback, you can
 				submit an issue on <a href="http://github.com/natty-parser/natty/issues">
-				github</a>.
+				GitHub</a>. If incompatible changes are made to the API, the major version will be increased. The major version
+				may also be increased for other impactful updates. E.g. when requiring newer java version (currently still at 8).
 			</p>
 		</div>
 	</body>
