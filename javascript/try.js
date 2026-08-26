@@ -23,7 +23,7 @@ window.setup = async function setup() {
 				})
 
 				const prefix = "/app/lib/";
-				const classpath = `${prefix}natty-1.1.3.jar:${prefix}antlr-runtime-3.5.3.jar`;
+				const classpath = `${prefix}natty-1.1.4-SNAPSHOT.jar:${prefix}antlr-runtime-3.5.3.jar`;
 				console.log("Classpath:", classpath);
 				const cj = await cheerpjRunLibrary(classpath);
 
