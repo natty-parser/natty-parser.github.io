@@ -24,12 +24,11 @@ window.setup = async function setup() {
 
 				const prefix = "/app/lib/";
 				const urlParams = new URLSearchParams(window.location.search);
-				const version = urlParams.get("version") || "1.1.5-SNAPSHOT";
+				const version = urlParams.get("version") || "1.2.0-SNAPSHOT";
 				const classpath = `${prefix}natty-${version}.jar:${prefix}antlr-runtime-3.5.3.jar`;
 				console.log("Classpath:", classpath);
 				const cj = await cheerpjRunLibrary(classpath);
-
-
+				window.nattyLib = cj;
 				const Parser = await cj.org.natty.Parser;
 				window.nattyParser = await new Parser();
 
@@ -39,5 +38,24 @@ window.setup = async function setup() {
 		})();
 	}
 	return setupPromise;
+}
+
+/**
+ * Returns a parser for the given 'current time' (ISO instant) and time zone (zone id). Without either, the default parser is returned.
+ */
+window.getParser = async function getParser(now, zone) {
+	const defaultParser = await window.setup();
+	if (!now && !zone) {
+		return defaultParser;
+	}
+	const cj = window.nattyLib;
+	const Parser = await cj.org.natty.Parser;
+	try {
+		return await new Parser(now, zone);
+	} catch (e) {
+		console.log(e);
+		return defaultParser;
+
+	}
 }
 window.setup();

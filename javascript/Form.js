@@ -11,6 +11,10 @@ Form = Class.create({
 		this._structureDetails = $('structure_details');
 		this._astDetails = $('ast_details');
 		this._clear = $('clear');
+		this._settings = $('settings');
+		this._now = $('now_input');
+		this._zone = $('zone_input');
+		this._zone.placeholder = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
 		// or when the submit button is pressed
 		this._submitButton.observe('click', this._submit.bind(this));
@@ -38,8 +42,23 @@ Form = Class.create({
 			window.history.pushState({}, '', url);
 		}.bind(this));
 
+		// re-parse when one of the settings changes
+		const resubmit = function (e) {
+			if (this._input.value.strip().length > 0) {
+				this._submit(e);
+			}
+		}.bind(this);
+		this._now.addEventListener('change', resubmit);
+		this._zone.addEventListener('change', resubmit);
+
 		// Read from query string on load
-		const queryValue = new URLSearchParams(window.location.search).get('q');
+		const searchParams = new URLSearchParams(window.location.search);
+		this._now.value = searchParams.get('now') || '';
+		this._zone.value = searchParams.get('tz') || '';
+		if (this._now.value || this._zone.value) {
+			this._settings.open = true;
+		}
+		const queryValue = searchParams.get('q');
 		if (queryValue) {
 			this._input.value = queryValue;
 			this._submit();
@@ -63,7 +82,7 @@ Form = Class.create({
 		this._submitButton.disabled = true;
 		this._loadingIndicator.show();
 
-		const parser = await window.setup();
+		await window.setup();
 		this._summary.hide();
 		this._date.hide();
 		this._error.hide();
@@ -77,12 +96,15 @@ Form = Class.create({
 
 		try {
 			const value = this._input.value.strip();
+			const now = this._now.value.strip();
+			const zone = this._zone.value.strip();
+			const url = new URL(window.location);
+			url.searchParams.set('q', value);
+			if (now) url.searchParams.set('now', now); else url.searchParams.delete('now');
+			if (zone) url.searchParams.set('tz', zone); else url.searchParams.delete('tz');
+			window.history.pushState({}, '', url);
+			const parser = await window.getParser(now, zone);
 			console.log("Parsing value:", value, parser);
-			if (value.length > 0) {
-				const url = new URL(window.location);
-				url.searchParams.set('q', value);
-				window.history.pushState({}, '', url);
-			}
 			const result = await parser.parse(value);
 			if (await result.isEmpty()) {
 				console.log("No result found");
@@ -91,7 +113,12 @@ Form = Class.create({
 				const firstGroup = await result.get(0);
 				const syntaxTree = await firstGroup.getSyntaxTree();
 				const syntaxTreeString = await syntaxTree.toStringTree();
-				const dates = await firstGroup.getDates();
+				let dates;
+				try {
+					dates = await firstGroup.getTemporals();
+				} catch (e) {
+					dates = await firstGroup.getDates();
+				}
 				let string = "";
 				for (let i = 0; i < await dates.size(); i++) {
 					const date = await dates.get(i);

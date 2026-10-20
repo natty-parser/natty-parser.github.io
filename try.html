@@ -75,6 +75,31 @@
 				</datalist>
 				<button id="clear" >clear</button>
 			</div>
+			<details id="settings">
+				<summary>settings</summary>
+				<div class="setting">
+					<label for="now_input">current time</label>
+					<input type="text" id="now_input" list="now-examples" placeholder="now" />
+					<datalist id="now-examples">
+						<option>2000-01-01T00:00:00Z</option>
+						<option>2024-02-29T12:00:00Z</option>
+						<option>1999-12-31T23:59:59Z</option>
+						<option>2038-01-19T03:14:07Z</option>
+					</datalist>
+				</div>
+				<div class="setting">
+					<label for="zone_input">time zone</label>
+					<input type="text" id="zone_input" list="zone-examples" />
+					<datalist id="zone-examples">
+						<option>UTC</option>
+						<option>Europe/Amsterdam</option>
+						<option>America/New_York</option>
+						<option>Asia/Tokyo</option>
+						<option>Australia/Adelaide</option>
+						<option>Asia/Kathmandu</option>
+					</datalist>
+				</div>
+			</details>
 			<button id="submit">parse</button>
 			<img src="images/loading.gif" alt="loading..." id="loading" style="display:none"/>
 

@@ -99,6 +99,31 @@ code.block {
 	margin-bottom: 20px;
 }
 
+#settings {
+	color: #888;
+	font-size: 13px;
+	margin-bottom: 20px;
+}
+
+#settings summary {
+	cursor: pointer;
+}
+
+#settings .setting {
+	display: inline-block;
+	margin: 1ex 20px 0 0;
+}
+
+#settings label {
+	display: inline;
+	padding: 0 1ex 0 0;
+}
+
+#settings input {
+	font-size: 13px;
+	width: 180px;
+}
+
 #error,
 #empty {
 	color: #888;
